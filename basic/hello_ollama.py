@@ -41,6 +41,7 @@ from ollama import ChatResponse
 models_list = ["deepseek-r1:1.5b", "dolphin3:8b", "gemma2:2b", "llama3.2:1b",
                "phi4:14b", "llava:7b"]
 for index, item in enumerate(models_list):
+  print(f"Using model {item}...")
   response: ChatResponse = chat(model=item, messages=[
     {
       'role': 'user',
@@ -49,4 +50,4 @@ for index, item in enumerate(models_list):
   ])
 
   # summarize the response
-  print(f"Model {index}: {response.model}\n{response.message.content}")  # print(response['message']['content'])
+  print(f"Model {index}, ({response.total_duration}/1e9):.2f\n{response.model}\n{response.message.content}")  # print(response['message']['content'])
